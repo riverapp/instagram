@@ -1,0 +1,18 @@
+{
+	"name": 				"Instagram",
+	"identifier":		"me.danpalmer.River.plugins.Instagram",
+	"description":  "LOL Hipsters.",
+	"titleImage":		"instagram.png",
+	"developer": {
+		"name":				"Dan Palmer",
+		"email":			"dan.palmer@me.com",
+		"website":		"http://danpalmer.me/River/Instagram"
+	},
+	"icons": {
+		"small":			"icons/instagram16.png",
+		"large":			"icons/instagram32.png"
+	},
+	"providers": {
+		"stream": "Instagram.js"
+	}
+}
