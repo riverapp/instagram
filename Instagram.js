@@ -2,7 +2,6 @@
 
 	var Instagram = function(delegate) {
 		this.OAUTH_CLIENT_ID = '34498eab82ad46b481c1b394cd9e879a';
-		console.log(delegate.callbackURL());
 		this.oauth_authorize_token_url =
 			'https://api.instagram.com/oauth/authorize/?client_id=' + this.OAUTH_CLIENT_ID +
 			'&redirect_uri=' + encodeURIComponent(delegate.callbackURL()) +
