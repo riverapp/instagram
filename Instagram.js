@@ -1,3 +1,5 @@
+// **This plugin is not complete and should not be used as a reference for
+// plugin development**
 (function() {
 
 	var Instagram = function(delegate) {
