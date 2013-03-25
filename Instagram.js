@@ -33,8 +33,7 @@
 			self.delegate.createAccount({
 				name: response.data.username,
 				identifier: response.data.id,
-				secret: params.access_token,
-				avatarURL: response.data.profile_picture
+				secret: params.access_token
 			});
 		});
 	};
@@ -59,15 +58,14 @@
 			for (var i = 0; i < response.data.length; i++) {
 				var img = new Image();
 				img.text = response.data[i].caption.text;
-				img.origin = response.data[i].user.full_name;
-				img.originImageURL = response.data[i].user.profile_picture;
+				img.creator = response.data[i].user.full_name;
+				img.creatorImageURL = response.data[i].user.profile_picture;
 				img.imageURL = response.data[i].images.standard_resolution.url;
-				img.height = response.data[i].images.standard_resolution.height;
-				img.width = response.data[i].images.standard_resolution.width;
+				img.imageHeight = response.data[i].images.standard_resolution.height;
+				img.imageWidth = response.data[i].images.standard_resolution.width;
 				img.identifier = response.data[i].id;
 				images.push(img);
 			}
-			console.log(images);
 			callback(null, images);
 		});
 	};
