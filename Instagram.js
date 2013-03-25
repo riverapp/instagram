@@ -8,7 +8,7 @@
 			'https://api.instagram.com/oauth/authorize/?client_id=' + this.OAUTH_CLIENT_ID +
 			'&redirect_uri=' + encodeURIComponent(delegate.callbackURL()) +
 			'&response_type=token&scope=basic';
-
+		this.feedURL = 'https://api.instagram.com/v1/users/self/feed?access_token=';
 		this.delegate = delegate;
 	};
 
@@ -44,6 +44,31 @@
 			'interval': 180,
 			'min': 60,
 			'max': 900
+		});
+	};
+
+	Instagram.prototype.update = function(user, callback) {
+		HTTP.request({
+			url: this.feedURL + user.secret
+		}, function(err, response) {
+			if (err) {
+				return callback(err, null);
+			}
+			response = JSON.parse(response);
+			var images = [];
+			for (var i = 0; i < response.data.length; i++) {
+				var img = new Image();
+				img.text = response.data[i].caption.text;
+				img.origin = response.data[i].user.full_name;
+				img.originImageURL = response.data[i].user.profile_picture;
+				img.imageURL = response.data[i].images.standard_resolution.url;
+				img.height = response.data[i].images.standard_resolution.height;
+				img.width = response.data[i].images.standard_resolution.width;
+				img.identifier = response.data[i].id;
+				images.push(img);
+			}
+			console.log(images);
+			callback(null, images);
 		});
 	};
 
